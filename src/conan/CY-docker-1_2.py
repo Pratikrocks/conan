@@ -29,7 +29,7 @@ def parse_manifest_json(input):
         config = data['Config']
         layers_id = data['Layers']
         # FIXME
-        # The data['RepoTags'] is a list, and I've checked only the list always
+        # The data['RepoTags'] is a list, and I've checked the list always
         # contians 1 element. Hard-coded for now
         repo_tags = data['RepoTags'][0]
         layer_info = get_layer_id_command(input, config, layers_id)
@@ -38,6 +38,7 @@ def parse_manifest_json(input):
             layer_list = update_info_to_dict(layer_info, repo_tags)
             layers_list.append(layer_list)
     return layers_list
+
 
 def get_layer_id_command(input_path, config, layers_id):
     layer_command = []
@@ -95,7 +96,6 @@ def update_info_to_dict(layer_info, repo_tags):
             layer_data[u'created_by'] = ''
         layer_dictionary_list.append(layer_data)
     return layer_dictionary_list
-    
 
 
 def write_to_csv(layers_list, output_file):
@@ -105,6 +105,7 @@ def write_to_csv(layers_list, output_file):
         dict_writer.writeheader()
         for items in layers_list:
             dict_writer.writerows(items)
+
 
 def main(argv):
     args = sys.argv[1:]
