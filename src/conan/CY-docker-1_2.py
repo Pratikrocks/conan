@@ -83,6 +83,16 @@ def update_info_to_dict(layer_info, repo_tags):
                 pass
         except Exception as e:
             layer_data[u'author'] = ''
+        try:
+            if not layer_data['created']:
+                pass
+        except Exception as e:
+            layer_data[u'created'] = ''
+        try:
+            if not layer_data['created_by']:
+                pass
+        except Exception as e:
+            layer_data[u'created_by'] = ''
         layer_dictionary_list.append(layer_data)
     return layer_dictionary_list
     
